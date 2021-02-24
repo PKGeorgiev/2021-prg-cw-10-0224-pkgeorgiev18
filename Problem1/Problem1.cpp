@@ -15,19 +15,28 @@ int main()
 	{
 		size_t lineCount = 1;
 
+		vector<string> last10Lines;
+
 		while (!file.eof())
 		{
 			getline(file, line);
 			
-			if (lineCount % 2 == 0) 
+			if (last10Lines.size() > 10)
 			{
-				cout << lineCount << ". " << line << endl;
+				last10Lines.erase(last10Lines.begin());
 			}
-			
+
+			last10Lines.push_back(to_string(lineCount) + ". " + line);
+		
 			lineCount++;
 		}
-		cout << "Line count: " << lineCount;
+		cout << "Line count: " << lineCount << endl;
 	
+		for (size_t i = 0; i < last10Lines.size(); i++)
+		{
+			cout << last10Lines[i] << endl;
+		}
+
 		file.close();
 	}
 	else {
