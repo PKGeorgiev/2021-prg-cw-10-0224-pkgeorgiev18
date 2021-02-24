@@ -1,11 +1,40 @@
-// Problem1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+
+using namespace std;
 
 int main()
 {
-    
+	ifstream file;
+	string line;
+
+	file.open("C:\\Windows\\setupact.log");
+	if (file.is_open())
+	{
+		size_t lineCount = 1;
+
+		while (!file.eof())
+		{
+			getline(file, line);
+			
+			if (lineCount % 2 == 0) 
+			{
+				cout << lineCount << ". " << line << endl;
+			}
+			
+			lineCount++;
+		}
+		cout << "Line count: " << lineCount;
+	
+		file.close();
+	}
+	else {
+		cout << "Error opening file!";
+	}
+
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
